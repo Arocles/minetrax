@@ -12,6 +12,10 @@
 ## About MineTrax
 MineTrax is a web suite & analytics tool for your minecraft servers. Using it you can improve your server engagement by providing a unified dashboard for players to visit and view their player data, or you can keep everything private and use it only for analytics, choice is yours.
 
+## Activity
+
+![Alt](https://repobeats.axiom.co/api/embed/0aac0565a812462007f7d4b1612c47b546e09a48.svg "Repobeats analytics image")
+
 ## Requirements
 - PHP 8.1+
 - MySQL 5.7+ or MariaDB 10.2.7+
@@ -40,6 +44,7 @@ MineTrax has lot of features, some of them are listed below:
  - Localization. Translate to any language you want.
  - Custom Navigation Menu. (Customize navbar as per your liking using drag and drop)
  - Custom Pages.
+ - Custom Theme
  - Dark Mode. Ofcoz (✿◠‿◠)
 
 ## Upcoming
@@ -47,7 +52,6 @@ MineTrax has lot of features, some of them are listed below:
  - Staff Recruitment System
  - Store System
  - Automated Server Events
- - Custom Theme
  - Rewards & Achievements
  - Advertisements & Monetisations
  - more...

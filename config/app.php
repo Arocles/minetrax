@@ -28,7 +28,18 @@ return [
     |
     */
 
-    'version' => '4.1.0',
+    'version' => '5.0.0',
+
+    /*
+    |--------------------------------------------------------------------------
+    | Application Theme
+    |--------------------------------------------------------------------------
+    |
+    | This value is the theme of your application.This is used to change current
+    | theme of your application to any custom theme.
+    |
+    */
+    'theme' => env('APP_THEME', 'default'),
 
     /*
     |--------------------------------------------------------------------------

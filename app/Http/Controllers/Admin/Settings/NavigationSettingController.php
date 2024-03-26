@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\Settings;
 use App\Http\Controllers\Controller;
 use App\Models\CustomPage;
 use App\Models\Download;
+use App\Models\Recruitment;
 use App\Settings\GeneralSettings;
 use App\Settings\NavigationSettings;
 use Illuminate\Http\Request;
@@ -55,6 +56,23 @@ class NavigationSettingController extends Controller
             ];
         }
 
+        // Recruitment which can be added
+        $recruitmentItems = Recruitment::select(['id', 'title', 'slug'])->get();
+        foreach ($recruitmentItems as $item) {
+            $availableNavItems[] = [
+                'type' => 'recruitment',
+                'name' => $item->title,
+                'title' => $item->title,
+                'id' => $item->id,
+                'route' => 'recruitment.show',
+                'route_params' => [
+                    'recruitment' => $item->slug,
+                ],
+                'is_open_in_new_tab' => false,
+                'key' => 'recruitment-'.$item->id,
+            ];
+        }
+
         return Inertia::render('Admin/Setting/NavigationSetting', [
             'settings' => $settings->toArray(),
             'generalSettings' => $generalSettings->toArray(),
@@ -70,14 +88,14 @@ class NavigationSettingController extends Controller
             'enable_sticky_header_menu' => 'required|boolean',
             'enable_custom_footer' => 'required|boolean',
             'custom_footer_data.site_moto' => 'nullable|string',
-            'custom_footer_data.style' => 'required_if:enable_custom_footer,true|in:variant_1,variant_2',
+            'custom_footer_data.style' => 'nullable|required_if:enable_custom_footer,true|in:variant_1,variant_2',
             'custom_footer_data.columns' => 'nullable|array',
             'custom_footer_data.columns.*' => 'nullable|array',
             'custom_footer_data.columns.*.title' => 'nullable|string',
             'custom_footer_data.columns.*.items' => 'nullable|array',
             'custom_footer_data.columns.*.items.*' => 'nullable|array',
             'custom_footer_data.columns.*.items.*.url' => 'nullable|string',
-            'custom_footer_data.columns.*.items.*.title' => 'required_with:custom_footer_data.columns.*.items.*.url|nullable|string',
+            'custom_footer_data.columns.*.items.*.title' => 'nullable|required_with:custom_footer_data.columns.*.items.*.url|nullable|string',
         ]);
 
         $navbarData = $request->input('custom_navbar_data');
